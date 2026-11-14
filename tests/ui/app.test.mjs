@@ -1,4 +1,4 @@
-// Headless test of the PadPilot UI app (ui/padPilot): the real app.js / app.html run in jsdom with AngularJS 1.x and a
+// Headless test of the GSC UI app (ui/gsc): the real app.js / app.html run in jsdom with AngularJS 1.x and a
 // mock of the BeamNG UI bridge (bngApi, StreamsManager). Checks what the app shows for given electrics and which Lua it
 // sends to the game for clicks and slider moves.
 // Usage: node tests/ui/app.test.mjs
@@ -10,7 +10,7 @@ import { JSDOM } from "jsdom";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const require = createRequire(import.meta.url);
-const app = join(root, "dist/ui/modules/apps/padPilot"); // the build output (npm run build)
+const app = join(root, "dist/ui/modules/apps/gsc"); // the build output (npm run build)
 
 const dom = new JSDOM("<!doctype html><html><body></body></html>", { url: "http://localhost/", runScripts: "outside-only", pretendToBeVisual: true });
 const w = dom.window;
@@ -44,7 +44,7 @@ w.eval(readFileSync(join(app, "app.js"), "utf8"));
 let $root, $compile, el;
 w.angular
   .module("beamng.apps")
-  .run(["$templateCache", ($tc) => $tc.put("/ui/modules/apps/padPilot/app.html", readFileSync(join(app, "app.html"), "utf8"))]);
+  .run(["$templateCache", ($tc) => $tc.put("/ui/modules/apps/gsc/app.html", readFileSync(join(app, "app.html"), "utf8"))]);
 const injector = w.angular.bootstrap(w.document.body, ["beamng.apps"]);
 $root = injector.get("$rootScope");
 $compile = injector.get("$compile");
@@ -80,9 +80,9 @@ function check(cond, what) {
 }
 
 // ---- scenario ----
-console.log("ui: PadPilot app (jsdom + AngularJS " + w.angular.version.full + ")");
+console.log("ui: GSC app (jsdom + AngularJS " + w.angular.version.full + ")");
 w.localStorage.clear();
-el = $compile("<pad-pilot></pad-pilot>")($root.$new());
+el = $compile("<gsc></gsc>")($root.$new());
 w.document.body.appendChild(el[0]);
 await flush();
 check(engine.some((c) => c === 'jsonReadFile("settings/agaSteering.json")') && engine.some((c) => c === 'jsonReadFile("settings/quickShift.json")'), "loads both settings files");
@@ -196,11 +196,11 @@ logBox.checked = false;
 logBox.dispatchEvent(new w.Event("change", { bubbles: true }));
 click(logBox); // jsdom: a click toggles the checkbox and fires the change ngModel listens to
 await flush();
-const logOn = JSON.parse(w.localStorage.getItem("padPilot.log"));
+const logOn = JSON.parse(w.localStorage.getItem("gsc.log"));
 check(typeof logOn === "boolean", "live log preference stored");
 
 // panel state persists
-check(w.localStorage.getItem("padPilot.open") === "true" && w.localStorage.getItem("padPilot.tab") === '"shift"', "open + tab remembered");
+check(w.localStorage.getItem("gsc.open") === "true" && w.localStorage.getItem("gsc.tab") === '"shift"', "open + tab remembered");
 
 // strip pill opens the matching tab
 click(q(".dk-gear"));

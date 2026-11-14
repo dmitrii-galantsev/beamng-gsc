@@ -1,4 +1,4 @@
-/** The part of BeamNG's UI (CEF / AngularJS) bridge the PadPilot app uses. */
+/** The part of BeamNG's UI (CEF / AngularJS) bridge the GSC app uses. */
 
 /** Lua bridges. `engineLua` runs in the game-engine VM; the result of the chunk is handed to `cb`. */
 declare const bngApi: {

@@ -1,4 +1,4 @@
-// Shared settings validation (pure). Every PadPilot module keeps its settings as one flat table of booleans and
+// Shared settings validation (pure). Every GSC module keeps its settings as one flat table of booleans and
 // numbers with a defaults table and a table of allowed numeric ranges; the UI app and hand-edited JSON files can
 // hold anything, so values are validated here the same way for all modules.
 import { clamp } from "./mathx";

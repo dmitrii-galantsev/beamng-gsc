@@ -1,7 +1,7 @@
 {
-  "name": "beamng-padpilot",
+  "name": "beamng-gsc",
   "version": "1.0.0",
-  "description": "PadPilot for BeamNG.drive: AGA gamepad steering, Horizon chase camera and QuickShift in one mod with one in-game app. TypeScript compiled to LuaJIT, tested headless.",
+  "description": "GSC for BeamNG.drive: AGA gamepad steering, Horizon chase camera and QuickShift in one mod with one in-game app. TypeScript compiled to LuaJIT, tested headless.",
   "scripts": {
     "build": "node scripts/build.mjs",
     "build:parity": "tstl -p tsconfig.parity.json",

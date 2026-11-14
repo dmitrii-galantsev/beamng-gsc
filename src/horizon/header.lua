@@ -8,9 +8,9 @@
 --   * follows slopes, rolls a little with the body, shakes at high speed and on impacts
 --   * right stick orbits the camera (rate control, stays where you leave it, eases back after a pause while driving)
 --
--- Settings: settings.getValue('hzc_*'), edited in the CAM tab of the PadPilot UI app.
+-- Settings: settings.getValue('hzc_*'), edited in the CAM tab of the GSC UI app.
 --
--- Part of PadPilot (AGA steering + Horizon camera + QuickShift).
--- GENERATED FILE - do not edit. Source: TypeScript in src/horizon + src/core of the PadPilot repo, compiled with
+-- Part of GSC (AGA steering + Horizon camera + QuickShift).
+-- GENERATED FILE - do not edit. Source: TypeScript in src/horizon + src/core of the GSC repo, compiled with
 -- TypeScriptToLua (npm run build). Layout: a tiny module loader, then one section per source module
--- (core.* = shared PadPilot code, horizon.rig = the pure camera model, horizon.horizon = BeamNG glue).
+-- (core.* = shared GSC code, horizon.rig = the pure camera model, horizon.horizon = BeamNG glue).

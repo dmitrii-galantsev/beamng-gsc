@@ -18,13 +18,13 @@ export const targets = {
   horizon: { raw: "horizon.lua", out: "lua/ge/extensions/core/cameraModes/horizon.lua", returnCreate: true },
 };
 
-/** The UI app: src/ui/padPilot/app.ts -> app.js (tsconfig.ui.json), copied with its html/css/json/png. */
-const UI_SRC = "src/ui/padPilot";
-const UI_OUT = "ui/modules/apps/padPilot";
+/** The UI app: src/ui/gsc/app.ts -> app.js (tsconfig.ui.json), copied with its html/css/json/png. */
+const UI_SRC = "src/ui/gsc";
+const UI_OUT = "ui/modules/apps/gsc";
 
 function buildUi() {
   execFileSync(join(root, "node_modules/.bin/tsc"), ["-p", join(root, "tsconfig.ui.json")], { stdio: "inherit", cwd: root });
-  const js = readFileSync(join(root, "build/ui/ui/padPilot/app.js"), "utf8");
+  const js = readFileSync(join(root, "build/ui/ui/gsc/app.js"), "utf8");
   if (/^\s*(import|export)\b/m.test(js)) throw new Error("ui: app.js must be a plain script (no import/export)");
   const out = join(root, "dist", UI_OUT);
   mkdirSync(out, { recursive: true });

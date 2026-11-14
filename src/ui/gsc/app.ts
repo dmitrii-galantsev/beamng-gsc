@@ -1,11 +1,11 @@
-// PadPilot in-game app: one strip + one panel for the three PadPilot modules.
+// GSC in-game app: one strip + one panel for the three GSC modules.
 //   STEER  AGA gamepad steering    (vehicle Lua extensions.agaSteering, settings/agaSteering.json)
 //   CAM    Horizon chase camera    (game-engine camera mode "horizon", game settings hzc_*)
 //   SHIFT  QuickShift              (vehicle Lua extensions.quickShift, settings/quickShift.json)
 // The shared pieces (settings stores, slider rows, presets, the live log, UI preferences) are defined once at the
 // top; each module below is a small description of its settings plus its live-state handling.
 //
-// Compiled by `npm run build` (tsconfig.ui.json) to dist/ui/modules/apps/padPilot/app.js: a plain browser script
+// Compiled by `npm run build` (tsconfig.ui.json) to dist/ui/modules/apps/gsc/app.js: a plain browser script
 // for BeamNG's UI (CEF + AngularJS 1.x). Tested headless by tests/ui/app.test.mjs.
 
 type Value = boolean | number;
@@ -89,10 +89,10 @@ interface Store<T extends Settings> {
   reset(): void;
 }
 
-angular.module("beamng.apps").directive("padPilot", [
+angular.module("beamng.apps").directive("gsc", [
   function () {
     return {
-      templateUrl: "/ui/modules/apps/padPilot/app.html",
+      templateUrl: "/ui/modules/apps/gsc/app.html",
       replace: true,
       restrict: "EA",
       link: function (scope: angular.IScope & Record<string, unknown>) {
@@ -125,7 +125,7 @@ angular.module("beamng.apps").directive("padPilot", [
         // UI-only preferences (not in any settings file)
         function pref<T>(key: string, def: T): T {
           try {
-            const v = window.localStorage.getItem("padPilot." + key);
+            const v = window.localStorage.getItem("gsc." + key);
             return v === null ? def : (JSON.parse(v) as T);
           } catch {
             return def;
@@ -133,7 +133,7 @@ angular.module("beamng.apps").directive("padPilot", [
         }
         function setPref(key: string, v: unknown): void {
           try {
-            window.localStorage.setItem("padPilot." + key, JSON.stringify(v));
+            window.localStorage.setItem("gsc." + key, JSON.stringify(v));
           } catch {
             /* storage unavailable: the preference just is not remembered */
           }

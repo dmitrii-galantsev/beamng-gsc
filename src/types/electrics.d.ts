@@ -1,5 +1,5 @@
 /**
- * Electrics values the PadPilot vehicle extensions publish (electrics.values.*) and the PadPilot UI app reads from
+ * Electrics values the GSC vehicle extensions publish (electrics.values.*) and the GSC UI app reads from
  * the electrics stream. Shared by the vehicle Lua targets and the UI target. Key names are a public interface.
  */
 
