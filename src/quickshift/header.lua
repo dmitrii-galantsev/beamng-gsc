@@ -17,7 +17,7 @@
 --   setEnabled(bool), toggle(), set("coastAggression", 0.8), reloadConfig(), getState()
 -- Published electrics: qsEnabled, qsAttached, qsCoast (0/1), qsReverse (0 none, 1 toward R, 2 toward D)
 --
--- Part of DriveKit (AGA steering + Horizon camera + QuickShift).
--- GENERATED FILE - do not edit. Source: TypeScript in src/quickshift + src/core of the DriveKit repo, compiled with
+-- Part of PadPilot (AGA steering + Horizon camera + QuickShift).
+-- GENERATED FILE - do not edit. Source: TypeScript in src/quickshift + src/core of the PadPilot repo, compiled with
 -- TypeScriptToLua (npm run build). Layout: a tiny module loader, then one section per source module
--- (core.* = shared DriveKit code, quickshift.model = the pure decision logic, quickshift.quickShift = BeamNG glue).
+-- (core.* = shared PadPilot code, quickshift.model = the pure decision logic, quickshift.quickShift = BeamNG glue).

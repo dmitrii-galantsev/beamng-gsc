@@ -1,10 +1,10 @@
 {
-  "name": "DriveKit",
-  "author": "DriveKit (AGA steering port of adam10603's Advanced Gamepad Assist)",
+  "name": "PadPilot",
+  "author": "PadPilot (AGA steering port of adam10603's Advanced Gamepad Assist)",
   "version": "1.0",
   "description": "AGA steering, Horizon camera and QuickShift: steering gauge, modes, settings and one live log",
-  "directive": "driveKit",
-  "domElement": "<drive-kit></drive-kit>",
+  "directive": "padPilot",
+  "domElement": "<pad-pilot></pad-pilot>",
   "types": ["ui.apps.categories.vehicle_info"],
   "css": { "width": "300px", "height": "460px", "bottom": "6px", "left": "312px" },
   "preserveAspectRatio": false

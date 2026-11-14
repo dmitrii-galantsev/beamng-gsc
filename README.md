@@ -1,4 +1,4 @@
-# DriveKit for BeamNG.drive
+# PadPilot for BeamNG.drive
 
 Three gamepad-driving mods in one package, with one in-game app:
 
@@ -14,11 +14,11 @@ headless, without the game.
 
 ## Install
 
-1. Download `driveKit.zip` from the releases (or build it: `npm ci && npm run build && npm run package`).
+1. Download `padPilot.zip` from the releases (or build it: `npm ci && npm run build && npm run package`).
 2. Put it in `%LOCALAPPDATA%\BeamNG\BeamNG.drive\current\mods\`.
-3. In game: UI Apps → add **DriveKit**.
+3. In game: UI Apps → add **PadPilot**.
 4. Optional bindings (Options → Controls → Vehicle / Camera): *AGA Steering: Grip / Rally*, *AGA Steering: assist on / off*,
-   *AGA Steering: recalibrate*, *QuickShift: on / off*, *DriveKit: Horizon camera*.
+   *AGA Steering: recalibrate*, *QuickShift: on / off*, *PadPilot: Horizon camera*.
 
 Upgrading from the separate mods: remove `mods/agaSteering.zip` and any loose copies of
 `lua/vehicle/extensions/auto/agaSteering.lua`, `lua/vehicle/extensions/auto/quickShift.lua`,
@@ -41,7 +41,7 @@ carry over unchanged.
     pip install lupa  # LuaJIT 2.1 for the headless game tests (python3)
     npm test          # typecheck, lint, build, unit, Node/LuaJIT parity, LuaJIT integration, UI test
     npm run build     # dist/lua/... and dist/ui/... (the mod's files)
-    npm run package   # dist/driveKit.zip
+    npm run package   # dist/padPilot.zip
 
 `node scripts/build.mjs aga` / `quickshift` / `horizon` / `ui` builds one target;
 `node scripts/integration.mjs --update <target>` rewrites a target's reference outputs after an intended change.
@@ -57,7 +57,7 @@ carry over unchanged.
       aga/         AGA steering: config, calibration, learn, smooth, steering (pure) + agaSteering.ts (glue)
       horizon/     Horizon camera: rig.ts (pure camera model) + horizon.ts (glue)
       quickshift/  QuickShift: model.ts (pure decisions) + quickShift.ts (glue)
-      ui/driveKit/ the in-game app: app.ts (AngularJS directive) + app.html / app.css / app.json / app.png
+      ui/padPilot/ the in-game app: app.ts (AngularJS directive) + app.html / app.css / app.json / app.png
       types/       typed BeamNG globals: common.d.ts (both Lua VMs), vehicle.d.ts, ge.d.ts, electrics.d.ts
                    (the electrics keys shared by the Lua side and the app), plus src/ui/bng.d.ts (UI bridge)
     tests/
@@ -68,7 +68,7 @@ carry over unchanged.
                    (the hand-written Lua it replaced), including the rally-mode variants h2rally / h5rally
       ui/          the compiled app in jsdom + AngularJS against a mock bngApi / StreamsManager
     scripts/       build.mjs (all targets), integration.mjs, package.mjs, luajit.py (LuaJIT 2.1 via lupa)
-    mod/           static mod files: input actions (driveKit.json), mod_info
+    mod/           static mod files: input actions (padPilot.json), mod_info
     tsconfig.<target>.json  one per build target; each Lua target only sees the globals of its own VM
 
 ### Rules that keep Node and Lua identical
@@ -89,3 +89,7 @@ changes.
 
 MIT (see `LICENSE`). AGA steering is a port of Advanced Gamepad Assist, MIT, Copyright (c) 2023 Adam D.
 (`LICENSE_original_AGA.txt`).
+
+---
+
+Built with AI assistance: code and docs written with Claude Opus 5.5 (Anthropic).

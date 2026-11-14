@@ -1,4 +1,4 @@
-/* DriveKit app. Bottom-anchored: the strip sits at the bottom of the app box, the panel grows upward.
+/* PadPilot app. Bottom-anchored: the strip sits at the bottom of the app box, the panel grows upward.
    Accents: steer = green (grip) / orange (rally), cam = blue, shift = amber. */
 .dk-app { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; color: #eceef2; font-size: 12px; pointer-events: none;
   --grip: #5dcaa5; --rally: #ff6a1a; --cam: #5aa9ff; --shift: #ffb347; --line: #4a4f59; --mute: #6f7782; --bg: rgba(14, 16, 20, 0.92); }

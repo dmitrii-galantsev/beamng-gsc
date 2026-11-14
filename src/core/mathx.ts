@@ -1,4 +1,4 @@
-// Shared pure scalar helpers for every DriveKit module (AGA steering, Horizon camera, QuickShift).
+// Shared pure scalar helpers for every PadPilot module (AGA steering, Horizon camera, QuickShift).
 // No BeamNG access: everything here runs unchanged under Node (unit tests) and LuaJIT (game).
 //
 // RULES for this and every other "pure" module (they keep Node and Lua semantics identical):

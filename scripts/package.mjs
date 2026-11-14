@@ -1,4 +1,4 @@
-// Package: dist/ (built Lua + UI app) + mod/ (input actions, mod info) + docs -> dist/driveKit.zip, a BeamNG mod
+// Package: dist/ (built Lua + UI app) + mod/ (input actions, mod info) + docs -> dist/padPilot.zip, a BeamNG mod
 // that goes into <userfolder>/mods/. Run `npm run build` first (npm run package does not rebuild).
 import { execFileSync } from "node:child_process";
 import { cpSync, existsSync, mkdirSync, rmSync } from "node:fs";
@@ -8,7 +8,7 @@ import { targets } from "./build.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const stage = join(root, "build/package");
-const zip = join(root, "dist/driveKit.zip");
+const zip = join(root, "dist/padPilot.zip");
 
 for (const t of Object.values(targets)) {
   if (!existsSync(join(root, "dist", t.out))) throw new Error(`missing dist/${t.out}: run npm run build first`);
@@ -22,5 +22,5 @@ for (const f of ["README.md", "LICENSE", "LICENSE_original_AGA.txt"]) cpSync(joi
 rmSync(zip, { force: true });
 // python's zipfile: portable (python3 is already needed for the LuaJIT tests), entries relative to the mod root
 execFileSync("python3", ["-m", "zipfile", "-c", zip, "lua", "ui", "mod_info", "README.md", "LICENSE", "LICENSE_original_AGA.txt"], { cwd: stage, stdio: "inherit" });
-console.log("package: dist/driveKit.zip");
+console.log("package: dist/padPilot.zip");
 execFileSync("python3", ["-m", "zipfile", "-l", zip], { stdio: "inherit" });

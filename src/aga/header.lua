@@ -21,8 +21,8 @@
 --
 -- Config: <userfolder>/settings/agaSteering.json  (re-read on every vehicle reset / spawn)
 --
--- Part of DriveKit (AGA steering + Horizon camera + QuickShift).
--- GENERATED FILE - do not edit. Source: TypeScript in src/aga + src/core of the DriveKit repo, compiled with
+-- Part of PadPilot (AGA steering + Horizon camera + QuickShift).
+-- GENERATED FILE - do not edit. Source: TypeScript in src/aga + src/core of the PadPilot repo, compiled with
 -- TypeScriptToLua (npm run build). Layout: a tiny module loader, then one section per source module
--- (lualib_bundle = TypeScriptToLua runtime helpers, core.* = shared DriveKit code, aga.* = this module).
+-- (lualib_bundle = TypeScriptToLua runtime helpers, core.* = shared PadPilot code, aga.* = this module).
 -- Modes: OFF / GRIP / RALLY (extensions.agaSteering.setMode, View button = toggleRally).

@@ -37,6 +37,6 @@
     "desc": "Switches to the Horizon chase camera",
     "onDown": "pcall(function() core_camera.setByName(0, 'horizon') end)",
     "order": 3.5,
-    "title": "DriveKit: Horizon camera"
+    "title": "PadPilot: Horizon camera"
   }
 }
