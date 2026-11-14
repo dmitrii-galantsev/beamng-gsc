@@ -1,0 +1,6 @@
+calib lock=33.00 (true 33.0)  curve={0.000,0.071,0.157,0.299,0.451,0.664,1.000}
+  msg:	AGA Steering: calibrated (lock 33.0 deg)
+  msg:	I calibration lock=33.00 sign=1 zero=0.00 curve={0.000,0.071,0.157,0.299,0.451,0.664,1.000}
+true peak  5 deg -> learned target 5.60  n=264 why=4096 muMax=1.00 C0=26.06 mF=777.77777777778 alpha=0.21
+true peak  8 deg -> learned target 8.08  n=600 why=0 muMax=1.00 C0=17.02 mF=777.77777777778 alpha=0.45
+true peak 11 deg -> learned target 11.14  n=600 why=0 muMax=1.00 C0=12.34 mF=777.77777777778 alpha=0.78

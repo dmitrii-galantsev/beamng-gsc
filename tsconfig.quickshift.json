@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": { "outDir": "build/quickshift" },
+  "include": ["src/quickshift/quickShift.ts", "src/types/common.d.ts", "src/types/electrics.d.ts", "src/types/vehicle.d.ts"],
+  "tstl": {
+    "luaTarget": "JIT",
+    "luaBundle": "../raw/quickShift.lua",
+    "luaBundleEntry": "src/quickshift/quickShift.ts",
+    "luaLibImport": "require-minimal",
+    "noImplicitSelf": true,
+    "noHeader": true,
+    "sourceMapTraceback": false
+  }
+}

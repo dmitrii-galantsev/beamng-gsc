@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": { "outDir": "build/horizon" },
+  "include": ["src/horizon/horizon.ts", "src/types/common.d.ts", "src/types/ge.d.ts"],
+  "tstl": {
+    "luaTarget": "JIT",
+    "luaBundle": "../raw/horizon.lua",
+    "luaBundleEntry": "src/horizon/horizon.ts",
+    "luaLibImport": "require-minimal",
+    "noImplicitSelf": true,
+    "noHeader": true,
+    "sourceMapTraceback": false,
+    "noResolvePaths": ["core/cameraModes/collision"]
+  }
+}

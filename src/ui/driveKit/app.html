@@ -1,0 +1,124 @@
+<div class="bngApp dk-app" ng-class="{open: ui.open, 'm-off': steer.mode() === 'off', 'm-grip': steer.mode() === 'grip', 'm-rally': steer.mode() === 'rally', 'cam-on': cam.active, 'qs-fire': shift.st.coast || shift.st.reverse}">
+  <link href="/ui/modules/apps/driveKit/app.css" rel="stylesheet">
+
+  <!-- slider row, shared by every tab: r = descriptor, cfg = the module's settings, save() = the module's save -->
+  <script type="text/ng-template" id="dk-row.html">
+    <div class="dk-row" ng-class="{dim: rowOff(r), accent: r.accent}">
+      <span>{{ r.label }} <b>{{ rowText(r, cfg) }}</b></span>
+      <input type="range" min="{{ r.min }}" max="{{ r.max }}" step="{{ r.step }}" ng-model="cfg[r.key]" ng-change="onChange(r)" ng-disabled="rowOff(r)">
+      <em ng-if="r.lo"><i>{{ r.lo }}</i><i>{{ r.hi }}</i></em>
+    </div>
+  </script>
+
+  <!-- settings panel: grows upward from the strip, only when opened -->
+  <div class="dk-panel" ng-if="ui.open">
+    <div class="dk-tabs">
+      <span class="t-steer" ng-class="{sel: ui.tab === 'steer'}" ng-click="setTab('steer')"><i class="dk-dot" ng-class="steer.dot()"></i>STEER</span>
+      <span class="t-cam" ng-class="{sel: ui.tab === 'cam'}" ng-click="setTab('cam')"><i class="dk-dot" ng-class="{cam: cam.active}"></i>CAM</span>
+      <span class="t-shift" ng-class="{sel: ui.tab === 'shift'}" ng-click="setTab('shift')"><i class="dk-dot" ng-class="{shift: shift.st.attached && shift.st.enabled}"></i>SHIFT</span>
+    </div>
+
+    <!-- ===== STEER ===== -->
+    <div class="tab-steer" ng-if="ui.tab === 'steer'">
+      <div class="dk-head">
+        <span class="dk-status">{{ steer.status() }}</span>
+        <span class="dk-facts" ng-if="steer.st.seen && !steer.st.unsupported">lock <b>{{ steer.st.calibrated ? (steer.st.lock | number:0) + '°' : '…' }}</b> · tyre <b>{{ steer.st.peak | number:1 }}°</b></span>
+      </div>
+      <div class="dk-seg wide">
+        <span ng-class="{sel: steer.mode() === 'off'}" ng-click="steer.setMode('off')">OFF</span>
+        <span ng-class="{sel: steer.mode() === 'grip'}" ng-click="steer.setMode('grip')">GRIP</span>
+        <span class="r" ng-class="{sel: steer.mode() === 'rally'}" ng-click="steer.setMode('rally')">RALLY</span>
+      </div>
+      <div class="dk-gauge big">
+        <div class="dk-zone reach" ng-style="steer.zone(steer.disp.max)"></div>
+        <div class="dk-zone grip" ng-style="steer.zone(steer.disp.grip)"></div>
+        <div class="dk-mark" ng-style="steer.mark()"></div>
+      </div>
+      <div class="dk-live">
+        <span>stick <b>{{ steer.live.stick }}%</b></span>
+        <span>wheels <b>{{ steer.live.wheel }}°</b></span>
+        <span><i class="k grip"></i>grip <b>{{ steer.live.grip }}°</b></span>
+        <span ng-class="{hot: steer.live.over > 0}"><i class="k reach"></i>over <b>+{{ steer.live.over }}°</b></span>
+        <span>self <b>{{ steer.live.self }}°</b></span>
+      </div>
+      <div ng-repeat="r in steer.rows" ng-if="rowShown(r)" ng-init="cfg = steer.store.cfg; onChange = steer.save" ng-include="'dk-row.html'"></div>
+      <div class="dk-more" ng-click="steer.toggleAdvanced()">{{ steer.advanced ? '▾' : '▸' }} Fine-tune</div>
+      <div class="dk-adv" ng-if="steer.advanced">
+        <div ng-repeat="r in steer.advRows" ng-init="cfg = steer.store.cfg; onChange = steer.save" ng-include="'dk-row.html'"></div>
+        <label class="dk-check" ng-repeat="c in steer.checks"><input type="checkbox" ng-model="steer.store.cfg[c.key]" ng-change="steer.save()"> {{ c.label }}</label>
+      </div>
+      <div class="dk-buttons">
+        <button ng-click="steer.recalibrate()">Recalibrate</button>
+        <button ng-click="steer.reset()">Reset</button>
+      </div>
+    </div>
+
+    <!-- ===== CAM ===== -->
+    <div class="tab-cam" ng-if="ui.tab === 'cam'">
+      <div class="dk-head">
+        <span class="dk-status">{{ cam.active ? 'Horizon camera' : 'Not the active camera' }}</span>
+        <a class="dk-link" ng-if="!cam.active" ng-click="cam.activate()">use it</a>
+      </div>
+      <div class="dk-live" ng-if="cam.active">
+        <span><b>{{ cam.live.kmh | number:0 }}</b> km/h</span>
+        <span>fov <b>{{ cam.live.fov | number:0 }}°</b></span>
+        <span><b>{{ cam.live.dist | number:1 }}</b> m</span>
+        <span>lag <b>{{ cam.live.lag | number:0 }}°</b></span>
+        <span>slide <b>{{ cam.live.slip | number:0 }}°</b></span>
+      </div>
+      <div class="dk-seg wide">
+        <span ng-repeat="p in cam.presets" ng-click="cam.applyPreset(p)" ng-class="{sel: cam.preset === p.name}">{{ p.name }}</span>
+      </div>
+      <div ng-repeat="r in cam.rows" ng-init="cfg = cam.store.cfg; onChange = cam.save" ng-include="'dk-row.html'"></div>
+    </div>
+
+    <!-- ===== SHIFT ===== -->
+    <div class="tab-shift" ng-if="ui.tab === 'shift'">
+      <div class="dk-head">
+        <span class="dk-status" ng-class="{bad: shift.st.seen && !shift.st.attached}">{{ shift.status() }}</span>
+      </div>
+      <div class="dk-seg wide">
+        <span ng-class="{sel: !shift.store.cfg.enabled}" ng-click="shift.setEnabled(false)">OFF</span>
+        <span ng-class="{sel: shift.store.cfg.enabled}" ng-click="shift.setEnabled(true)">ON</span>
+      </div>
+      <div class="dk-chips">
+        <span class="dk-chip" ng-class="{on: shift.store.cfg.coastAssist, fire: shift.st.coast}" ng-click="shift.flip('coastAssist')" title="Hold the gear choice while you coast and brake">COAST</span>
+        <span class="dk-chip" ng-class="{on: shift.store.cfg.reverseAssist, fire: shift.st.reverse}" ng-click="shift.flip('reverseAssist')" title="Faster D / R changes">REVERSE</span>
+      </div>
+      <div class="dk-seg wide">
+        <span ng-repeat="p in shift.presets" ng-click="shift.applyPreset(p)" ng-class="{sel: shift.preset === p.name}">{{ p.name }}</span>
+      </div>
+      <div ng-repeat="r in shift.rows" ng-init="cfg = shift.store.cfg; onChange = shift.changed" ng-include="'dk-row.html'"></div>
+    </div>
+
+    <!-- ===== shared live log ===== -->
+    <label class="dk-check dk-logtoggle"><input type="checkbox" ng-model="ui.showLog" ng-change="setShowLog()"> Live log</label>
+    <div ng-if="ui.showLog">
+      <div class="dk-loghead"><span>Log</span><a ng-click="clearLog()">clear</a></div>
+      <div class="dk-log">
+        <div ng-repeat="l in log track by l.id" ng-class="[l.kind, 'g-' + l.tag]"><i>{{ l.t }}</i><u>{{ l.tag }}</u>{{ l.msg }}</div>
+        <div class="empty" ng-if="!log.length">drive or move a slider</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- always-visible strip: the steering gauge fills all of it; mode switch, camera and gearbox show on hover -->
+  <div class="dk-strip">
+    <div class="dk-gauge" title="green: grip limit · orange: full stick in Rally · white: wheels">
+      <div class="dk-zone reach" ng-style="steer.zone(steer.disp.max)"></div>
+      <div class="dk-zone grip" ng-style="steer.zone(steer.disp.grip)"></div>
+      <div class="dk-mark" ng-style="steer.mark()"></div>
+    </div>
+    <div class="dk-ctl">
+      <div class="dk-seg" title="View button: Grip / Rally">
+        <span ng-class="{sel: steer.mode() === 'off'}" ng-click="steer.setMode('off')">OFF</span>
+        <span ng-class="{sel: steer.mode() === 'grip'}" ng-click="steer.setMode('grip')">GRIP</span>
+        <span class="r" ng-class="{sel: steer.mode() === 'rally'}" ng-click="steer.setMode('rally')">RALLY</span>
+      </div>
+      <span class="dk-pill p-cam" ng-click="cam.active ? toggleOpen('cam') : cam.activate()" title="{{ cam.active ? 'Horizon camera settings' : 'Switch to the Horizon camera' }}"><i class="dk-dot" ng-class="{cam: cam.active}"></i>CAM</span>
+      <span class="dk-pill p-shift" ng-click="toggleOpen('shift')" title="{{ shift.status() }}"><i class="dk-dot" ng-class="{shift: shift.st.attached && shift.st.enabled}"></i>{{ shift.short() }}</span>
+      <button class="dk-gear" ng-click="toggleOpen()" title="Settings">{{ ui.open ? '×' : '⚙' }}</button>
+    </div>
+    <span class="dk-flash" ng-if="ui.showLog && !ui.open && log.length && log[0].fresh">{{ log[0].msg }}</span>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+{
+  "name": "beamng-drivekit",
+  "version": "1.0.0",
+  "description": "DriveKit for BeamNG.drive: AGA gamepad steering, Horizon chase camera and QuickShift in one mod with one in-game app. TypeScript compiled to LuaJIT, tested headless.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:parity": "tstl -p tsconfig.parity.json",
+    "typecheck": "tsc -p tsconfig.test.json --noEmit && tsc -p tsconfig.ui.json --noEmit",
+    "lint": "eslint src tests",
+    "test:unit": "vitest run",
+    "test:integration": "node scripts/integration.mjs",
+    "test": "npm run typecheck && npm run lint && npm run build && npm run build:parity && npm run test:unit && npm run test:integration && npm run test:ui",
+    "package": "node scripts/package.mjs",
+    "clean": "rm -rf build dist",
+    "test:ui": "node tests/ui/app.test.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/angular": "^1.8.9",
+    "@types/node": "^26.6.6",
+    "@typescript-to-lua/language-extensions": "^1.19.0",
+    "angular": "^1.8.3",
+    "eslint": "^10.14.0",
+    "jsdom": "^31.0.1",
+    "lua-types": "^2.14.1",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.72.2",
+    "typescript-to-lua": "^1.37.1",
+    "vitest": "^5.1.0"
+  },
+  "private": true,
+  "type": "module"
+}

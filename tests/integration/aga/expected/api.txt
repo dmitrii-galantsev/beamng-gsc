@@ -1,0 +1,143 @@
+module: getMode:function getState:function onExtensionLoaded:function onExtensionUnloaded:function onReset:function onSettingsChanged:function onVehicleLoaded:function recalibrate:function reloadConfig:function saveLearned:function setEnabled:function setMode:function setRally:function syncMode:function syncRally:function toggle:function toggleRally:function updateGFX:function
+ok   module exports exactly the 18 documented functions
+ok   onExtensionLoaded returns true
+state before load: {calibrated=false,cfg={},curve={0,1},curveIn={0,1},learnSamples=0,lock=35,ready=false,sign=0,targetSlip=7,unsupported=false,wheelbase=2.5,wheelsByPosition=false,zero=0}
+electrics before load: agaActive=0 agaCalibrated=0 agaCalibrating=0 agaCounter=0 agaEnabled=0 agaGrip=1 agaLearn=0 agaLearnWhy=0 agaLimit=1 agaLockDeg=35 agaMax=1 agaOut=0 agaPeakSlip=7 agaRally=0 agaSelfSteer=0 agaStick=0 agaUnsupported=0
+ok   nothing saved before anything was learned
+cfg: {applyToKeyboard=false,calibrate=true,countersteerResponse=0.16000000000000003,dampingStrength=0.46999999999999997,debug=false,enabled=true,filterSetting=0.69999999999999996,learnPeakSlip=true,maxDynamicLimitReduction=5.5999999999999996,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=-0.039999999999999994,reverseDampingFix=true,selfSteerResponse=0.46999999999999997,steeringRate=0.59999999999999998,targetSlip=0.94199999999999995,useFilter=true,velocitySmoothing=0.20000000000000001}
+  gui: AGA Steering: calibrated (lock 30.0 deg) ttl=4 cat=agaSteering
+  log I agaSteering: calibration lock=30.00 sign=1 zero=0.00 curve={0.0000,0.1000,0.2000,0.3500,0.5000,0.7000,1.0000}
+  digest sweep: 167835.41542260445
+after sweep: {calibrated=true,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.16000000000000003,dampingStrength=0.46999999999999997,debug=false,enabled=true,filterSetting=0.69999999999999996,learnPeakSlip=true,maxDynamicLimitReduction=5.5999999999999996,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=-0.039999999999999994,reverseDampingFix=true,selfSteerResponse=0.46999999999999997,steeringRate=0.59999999999999998,targetSlip=0.94199999999999995,useFilter=true,velocitySmoothing=0.20000000000000001},curve={0,0.099990584916724815,0.19999165425818219,0.34999457106810772,0.49999617680966951,0.6999952594136053,1},curveIn={0,0.10000000000000001,0.20000000000000001,0.34999999999999998,0.5,0.69999999999999996,1},frontStaticMass=713.5575942915392,learnC0=17.188733853924695,learnDbg={alphaDeg=2.643114217384027e-52,ayKin=0,ayS=0},learnMuMax=1,learnSamples=0,learnWhy=518,lock=29.999678871164619,ready=true,sign=1,targetSlip=8,unsupported=false,wheelbase=2.7000000000000002,wheelsByPosition=false,zero=0}
+electrics: agaActive=2 agaCalibrated=1 agaCalibrating=0 agaCounter=0 agaEnabled=1 agaGrip=1 agaLearn=0 agaLearnWhy=518 agaLimit=1 agaLockDeg=29.999678871164619 agaMax=1 agaOut=0 agaPeakSlip=8 agaRally=0 agaSelfSteer=0 agaStick=0 agaUnsupported=0 steering_input=0
+ok   calibrated, lock 30
+  digest standstill: 68897.882760087145
+  digest corner r=-0.2: 57471.421824080942
+  digest corner r=0.2: 62926.305858859763
+  digest corner r=-0.2: 63049.968168220519
+  write settings/agaSteering_learned.json pretty=true {testcar|tire_F_225_45_18_sport,tire_R_255_40_18_sport={C0=11.67045268765774,muMax=1,n=300}}
+  digest corner r=0.2: 63068.332652812009
+after cornering: {calibrated=true,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.16000000000000003,dampingStrength=0.46999999999999997,debug=false,enabled=true,filterSetting=0.69999999999999996,learnPeakSlip=true,maxDynamicLimitReduction=5.5999999999999996,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=-0.039999999999999994,reverseDampingFix=true,selfSteerResponse=0.46999999999999997,steeringRate=0.59999999999999998,targetSlip=0.94199999999999995,useFilter=true,velocitySmoothing=0.20000000000000001},curve={0,0.099990584916724815,0.19999165425818219,0.34999457106810772,0.49999617680966951,0.6999952594136053,1},curveIn={0,0.10000000000000001,0.20000000000000001,0.34999999999999998,0.5,0.69999999999999996,1},frontStaticMass=713.5575942915392,learnC0=11.670399323763247,learnDbg={alphaDeg=2.0000000000000173,ayKin=4.0003644833939722,ayS=4,muF=0.4077471967380224},learnMuMax=1,learnSamples=600,learnWhy=0,lock=29.999678871164619,ready=true,sign=1,targetSlip=11.782790546969563,unsupported=false,wheelbase=2.7000000000000002,wheelsByPosition=false,zero=0}
+ok   estimator accepted samples
+  digest periodic save: 110437.03280113594
+ok   periodic save (every 30 s of active driving) happened
+ok   no rewrite when nothing meaningful changed
+ok   learned entry keyed by model|sorted tyre parts
+after onReset: {calibrated=true,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.16000000000000003,dampingStrength=0.46999999999999997,debug=false,enabled=true,filterSetting=0.69999999999999996,learnPeakSlip=true,maxDynamicLimitReduction=5.5999999999999996,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=-0.039999999999999994,reverseDampingFix=true,selfSteerResponse=0.46999999999999997,steeringRate=0.59999999999999998,targetSlip=0.94199999999999995,useFilter=true,velocitySmoothing=0.20000000000000001},curve={0,0.099990584916724815,0.19999165425818219,0.34999457106810772,0.49999617680966951,0.6999952594136053,1},curveIn={0,0.10000000000000001,0.20000000000000001,0.34999999999999998,0.5,0.69999999999999996,1},frontStaticMass=713.5575942915392,learnC0=11.681096738829474,learnDbg={alphaDeg=2.0000000000000173,ayKin=4.0003644833939722,ayS=4,muF=0.4077471967380224},learnMuMax=1,learnSamples=600,learnWhy=0,lock=29.999678871164619,ready=true,sign=1,targetSlip=11.772000001874567,unsupported=false,wheelbase=2.7000000000000002,wheelsByPosition=false,zero=0}
+ok   reset keeps calibration and learned data
+peakSlipDeg=9: {calibrated=true,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=true,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=9,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0},curve={0,0.099990584916724815,0.19999165425818219,0.34999457106810772,0.49999617680966951,0.6999952594136053,1},curveIn={0,0.10000000000000001,0.20000000000000001,0.34999999999999998,0.5,0.69999999999999996,1},learnC0=15.278874536821952,learnDbg={alphaDeg=2.0000000000000173,ayKin=4.0003644833939722,ayS=4,muF=0.4077471967380224},learnMuMax=1,learnSamples=0,learnWhy=0,lock=29.999678871164619,ready=true,sign=1,targetSlip=9,unsupported=false,wheelbase=2.7000000000000002,wheelsByPosition=false,zero=0}
+ok   fixed peak slip resets learning
+  digest corner r=0.2: 21567.489939504878
+ok   no save while peakSlipDeg is fixed
+  digest corner r=0.2: 10063.94226541948
+learnPeakSlip=false: {calibrated=true,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=false,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0},curve={0,0.099990584916724815,0.19999165425818219,0.34999457106810772,0.49999617680966951,0.6999952594136053,1},curveIn={0,0.10000000000000001,0.20000000000000001,0.34999999999999998,0.5,0.69999999999999996,1},learnC0=17.188733853924695,learnMuMax=1,learnSamples=0,learnWhy=0,lock=29.999678871164619,ready=true,sign=1,targetSlip=8,unsupported=false,wheelbase=2.7000000000000002,wheelsByPosition=false,zero=0}
+defaults again: {applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=true,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0}
+restored: {calibrated=false,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=true,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0},curve={0,1},curveIn={0,1},learnC0=11.67045268765774,learnMuMax=1,learnSamples=300,lock=35,ready=true,sign=0,targetSlip=11.782736669402993,unsupported=false,wheelbase=2.5,wheelsByPosition=false,zero=0}
+ok   learned target restored on spawn
+restored (hostile file): {calibrated=false,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=true,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0},curve={0,1},curveIn={0,1},learnC0=200,learnMuMax=0.80000000000000004,learnSamples=250,lock=35,ready=true,sign=0,targetSlip=4.6666666666666661,unsupported=false,wheelbase=2.5,wheelsByPosition=false,zero=0}
+restored (garbage file): {calibrated=false,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=true,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0},curve={0,1},curveIn={0,1},learnC0=17.188733853924695,learnMuMax=1,learnSamples=0,lock=35,ready=true,sign=0,targetSlip=8,unsupported=false,wheelbase=2.5,wheelsByPosition=false,zero=0}
+  gui: AGA Steering: calibrated (lock 30.0 deg) ttl=4 cat=agaSteering
+  log I agaSteering: calibration lock=30.00 sign=1 zero=0.00 curve={0.0000,0.1000,0.2000,0.3500,0.5000,0.7000,1.0000}
+  digest sweep 2: 166501.97812423084
+  digest enabled: 35016.899261213577
+  gui: AGA OFF  -  stock BeamNG steering ttl=3 cat=agaSteeringMode
+  digest disabled: 17844.911256727752
+electrics: agaActive=0 agaCalibrated=1 agaCalibrating=0 agaCounter=0 agaEnabled=0 agaGrip=1 agaLearn=0 agaLearnWhy=512 agaLimit=1 agaLockDeg=29.999678871164619 agaMax=1 agaOut=0 agaPeakSlip=8 agaRally=0 agaSelfSteer=0 agaStick=0 agaUnsupported=0 steering_input=0.5
+ok   setEnabled(false): passthrough
+ok   override survives a config reload
+  gui: AGA GRIP  -  steering stops at the grip limit ttl=3 cat=agaSteeringMode
+ok   toggle turns it back on
+  gui: AGA OFF  -  stock BeamNG steering ttl=3 cat=agaSteeringMode
+ok   setEnabled(nil) = off
+  gui: AGA GRIP  -  steering stops at the grip limit ttl=3 cat=agaSteeringMode
+ok   setEnabled(0) = on (Lua truthiness)
+  gui: AGA OFF  -  stock BeamNG steering ttl=3 cat=agaSteeringMode
+ok   reloadConfig keeps the live mode
+  gui: AGA RALLY  -  push the stick all the way to steer past the grip limit ttl=3 cat=agaSteeringMode
+ok   setMode('rally')
+ok   setMode saves enabled+rally and syncs the other cars
+  gui: AGA GRIP  -  steering stops at the grip limit ttl=3 cat=agaSteeringMode
+ok   toggleRally: rally -> grip
+  gui: AGA OFF  -  stock BeamNG steering ttl=3 cat=agaSteeringMode
+ok   setMode('off')
+  gui: AGA RALLY  -  push the stick all the way to steer past the grip limit ttl=3 cat=agaSteeringMode
+ok   toggleRally from off -> rally
+ok   setMode ignores unknown modes
+ok   mode survives a config reload
+ok   syncMode is quiet (no save)
+  gui: AGA GRIP  -  steering stops at the grip limit ttl=3 cat=agaSteeringMode
+ok   setRally(false) = grip
+  gui: AGA Steering: calibrated (lock 24.0 deg) ttl=4 cat=agaSteering
+  log I agaSteering: calibration lock=24.00 sign=1 zero=0.00 curve={0.0000,0.1000,0.2000,0.3500,0.5000,0.7000,1.0000}
+  digest recalibrate: 177846.97616806216
+recalibrated: {calibrated=true,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=true,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0},curve={0,0.099990584916724551,0.19999165425818111,0.34999839418272038,0.50000000002727174,0.69999525964744902,1},curveIn={0,0.10000000000000001,0.20000000000000001,0.34999999999999998,0.5,0.69999999999999996,1},frontStaticMass=713.5575942915392,learnC0=17.188733853924695,learnDbg={alphaDeg=5.4893523527933167e-50,ayKin=0,ayS=0},learnMuMax=1,learnSamples=0,learnWhy=518,lock=23.999743096931876,ready=true,sign=1,targetSlip=8,unsupported=false,wheelbase=2.7000000000000002,wheelsByPosition=false,zero=0}
+ok   recalibrate measures the new lock
+  digest wheel: 18019.368549875537
+ok   wheel untouched
+  digest kbd: 18019.368549875537
+ok   keyboard untouched by default
+  digest kbd on: 17785.625093705152
+ok   keyboard processed with applyToKeyboard
+  digest kbd2: 7173.3811263092493
+  digest ai: 7201.108049794334
+ok   AI driving: untouched
+  digest no ai module: 7180.0866470769952
+  digest unseated: 7201.108049794334
+  digest no filter: 7201.108049794334
+  graph: {{stick,0.40000000000000002,1,},{out,0.046132542628514947,1,},{frontSlip,0,20,deg},{targetSlip,8,20,deg},{limit,0.96063807985412708,1,},{selfSteer,0,1,},{counter,0,1,}}
+  digest debug graph: 17779.796679487357
+ok   debug graph streamed every frame
+  digest brake: 17773.256244807188
+  digest corner r=0.2: 25021.235585654977
+  why on grass: 128
+  gui: AGA Steering: calibrated (lock 30.0 deg) ttl=4 cat=agaSteering
+  log I agaSteering: calibration lock=30.00 sign=1 zero=0.00 curve={0.0000,0.1000,0.2000,0.3500,0.5000,0.7000,1.0000}
+  digest sweep 3: 166501.97812423084
+  digest standstill: 68897.882760087145
+  digest corner r=0.2: 44114.560052494366
+  digest corner r=-0.2: 49817.763131266089
+  log W agaSteering: could not save learned tyre data to settings/agaSteering_learned.json: false
+ok   failed save is retried
+  write settings/agaSteering_learned.json pretty=true {testcar|tire_F_225_45_18_sport,tire_R_255_40_18_sport={C0=11.682975442079956,muMax=1,n=300}}
+ok   onExtensionUnloaded saves
+  log W agaSteering: steering calibration failed (nosteer), retrying
+  gui: AGA Steering: front wheels do not respond to steering - assist disabled for this vehicle ttl=6 cat=agaSteering
+  log W agaSteering: front wheels do not respond to steering - assist disabled for this vehicle
+  digest no steering: 339210.21839662211
+no steering: {calibrated=false,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=true,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0},curve={0,1},curveIn={0,1},frontStaticMass=713.5575942915392,learnC0=17.188733853924695,learnDbg={alphaDeg=0,ayKin=0,ayS=0},learnMuMax=1,learnSamples=0,learnWhy=518,lock=35,ready=true,sign=0,targetSlip=8,unsupported=true,wheelbase=2.7000000000000002,wheelsByPosition=false,zero=0} | agaActive=0 agaCalibrated=0 agaCalibrating=0 agaCounter=0 agaEnabled=1 agaGrip=1 agaLearn=0 agaLearnWhy=518 agaLimit=1 agaLockDeg=35 agaMax=1 agaOut=0 agaPeakSlip=8 agaRally=0 agaSelfSteer=0 agaStick=0 agaUnsupported=1 steering_input=0
+ok   front wheels that do not steer -> unsupported after two tries
+  gui: AGA Steering: rear-wheel steering detected - assist disabled for this vehicle ttl=6 cat=agaSteering
+  log W agaSteering: rear-wheel steering detected - assist disabled for this vehicle
+  digest rear steer: 222201.80810661803
+rear steer: {calibrated=false,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=true,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0},curve={0,1},curveIn={0,1},frontStaticMass=713.5575942915392,learnC0=17.188733853924695,learnDbg={alphaDeg=0,ayKin=0,ayS=0},learnMuMax=1,learnSamples=0,learnWhy=518,lock=35,ready=true,sign=0,targetSlip=8,unsupported=true,wheelbase=2.7000000000000002,wheelsByPosition=false,zero=0}
+ok   rear-wheel steering -> unsupported
+  gui: AGA Steering: calibrated (lock 30.0 deg) ttl=4 cat=agaSteering
+  log I agaSteering: calibration lock=30.00 sign=-1 zero=0.00 curve={0.0000,0.1000,0.2000,0.3500,0.5000,0.7000,1.0000}
+  digest inverted: 166501.97812423084
+inverted: {calibrated=true,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=true,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0},curve={0,0.099990584916724815,0.19999165425818219,0.34999457106810772,0.49999617680966951,0.6999952594136053,1},curveIn={0,0.10000000000000001,0.20000000000000001,0.34999999999999998,0.5,0.69999999999999996,1},frontStaticMass=713.5575942915392,learnC0=17.188733853924695,learnDbg={alphaDeg=1.3553956430548871e-50,ayKin=0,ayS=0},learnMuMax=1,learnSamples=0,learnWhy=518,lock=29.999678871164619,ready=true,sign=-1,targetSlip=8,unsupported=false,wheelbase=2.7000000000000002,wheelsByPosition=false,zero=0}
+ok   inverted steering_input convention detected
+  log I agaSteering: No F*/R* wheel names; front/rear wheels identified by position
+ok   wheels without F/R names are split by position
+  gui: AGA Steering: calibrated (lock 30.0 deg) ttl=4 cat=agaSteering
+  log I agaSteering: calibration lock=30.00 sign=1 zero=0.00 curve={0.0000,0.1000,0.2000,0.3500,0.5000,0.7000,1.0000}
+  digest by position: 166501.97812423084
+by position: {calibrated=true,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=true,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0},curve={0,0.099990584916724815,0.19999165425818219,0.34999457106810772,0.49999617680966951,0.6999952594136053,1},curveIn={0,0.10000000000000001,0.20000000000000001,0.34999999999999998,0.5,0.69999999999999996,1},frontStaticMass=713.5575942915392,learnC0=17.188733853924695,learnDbg={alphaDeg=1.3553956430548871e-50,ayKin=0,ayS=0},learnMuMax=1,learnSamples=0,learnWhy=518,lock=29.999678871164619,ready=true,sign=1,targetSlip=8,unsupported=false,wheelbase=2.7000000000000002,wheelsByPosition=true,zero=0}
+  digest broken FL: 21439.029247509046
+  log D agaSteering: Could not identify front/rear wheels; assist inactive for this vehicle
+ok   not ready with a single usable wheel
+  digest not ready: 5325.3056328024268
+  digest late wheels: 31658.553788109461
+ok   wheel discovery is retried while not ready
+  log D agaSteering: Could not identify front/rear wheels; assist inactive for this vehicle
+  digest no wheel table: 1090.7876628293043
+  gui: AGA Steering: calibrated (lock 30.0 deg) ttl=4 cat=agaSteering
+  log I agaSteering: calibration lock=30.00 sign=1 zero=0.00 curve={0.0000,0.1000,0.2000,0.3500,0.5000,0.7000,1.0000}
+  digest sweep, no vehicle data: 166501.97812423084
+  digest standstill: 68897.882760087145
+  digest corner r=0.2: 44114.560052494366
+ok   no vehicle data -> nothing to key the learned data on
+  digest sweep, no FS/particles: 27824.63993948992
+  log I agaSteering: steering direction detected while driving: sign=1
+  digest corner r=0.2: 10251.1589614645
+no FS/particles: {calibrated=false,cfg={applyToKeyboard=false,calibrate=true,countersteerResponse=0.20000000000000001,dampingStrength=0.37,debug=false,enabled=true,filterSetting=0.5,learnPeakSlip=true,maxDynamicLimitReduction=5,maxSelfSteerAngle=90,peakSlipDeg=0,rally=false,rallyExtraDeg=18,rallyKnee=0.65000000000000002,rateIncreaseWithSpeed=0,reverseDampingFix=true,selfSteerResponse=0.37,steeringRate=0.5,targetSlip=0.94999999999999996,useFilter=true,velocitySmoothing=0},curve={0,1},curveIn={0,1},learnC0=17.188733853924695,learnMuMax=1,learnSamples=0,learnWhy=1,lock=35,ready=true,sign=1,targetSlip=8,unsupported=false,wheelbase=2.7000000000000002,wheelsByPosition=false,zero=0}
+API SCENARIO: all checks passed

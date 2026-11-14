@@ -1,0 +1,25 @@
+standstill                 v=  0 km/h  dist= 5.97  camH= 2.02  fov= 55.0  view-heading=    0.0  carOff=  0.0
+launch 0.8g                v= 86 km/h  dist= 6.54  camH= 2.03  fov= 64.3  view-heading=   -0.0  carOff= -0.0
+accelerate                 v=272 km/h  dist= 6.78  camH= 2.03  fov= 78.1  view-heading=   -0.0  carOff= -0.0
+cruise                     v=272 km/h  dist= 6.58  camH= 2.02  fov= 77.0  view-heading=   -0.0  carOff= -0.0
+fast sweeper               v=272 km/h  dist= 6.58  camH= 2.03  fov= 77.0  view-heading=   -1.8  carOff= -0.6
+hard brake 1.2g            v=143 km/h  dist= 5.87  camH= 2.02  fov= 68.3  view-heading=    0.0  carOff=  0.0
+hairpin                    v=116 km/h  dist= 6.18  camH= 2.03  fov= 66.1  view-heading=   -8.9  carOff= -2.6
+drift 30 deg               v=137 km/h  dist= 6.89  camH= 2.02  fov= 70.9  view-heading=  -19.5  carOff= -1.6
+straighten                 v=137 km/h  dist= 6.35  camH= 2.03  fov= 68.7  view-heading=   -0.0  carOff= -0.0
+bumps                      v=137 km/h  dist= 6.35  camH= 1.87  fov= 68.7  view-heading=   -0.0  carOff= -0.0
+car stayed within 2.6 deg of the aim direction
+stick right 0.5 s          v=137 km/h  dist= 6.48  camH= 2.02  fov= 68.7  view-heading=   70.3  carOff=  1.7
+released 1 s (holds)       v=137 km/h  dist= 6.52  camH= 2.03  fov= 68.7  view-heading=   80.2  carOff=  1.7
+released 4 s (recentred)   v=137 km/h  dist= 6.35  camH= 2.02  fov= 68.7  view-heading=    0.2  carOff=  0.0
+parked, stick left 0.5 s   v=  0 km/h  dist= 6.19  camH= 2.03  fov= 58.0  view-heading=  -70.2  carOff= -1.7
+parked, released 5 s       v=  0 km/h  dist= 6.13  camH= 2.02  fov= 55.0  view-heading=  -80.0  carOff= -1.8
+look back                  v=  0 km/h  dist= 6.20  camH= 2.02  fov= 55.0  view-heading=  100.0  carOff=  1.8
+look back released         v=  0 km/h  dist= 6.13  camH= 2.02  fov= 55.0  view-heading=  -80.0  carOff= -1.8
+dist 2x, bad fov ignored   v=  0 km/h  dist=12.13  camH= 2.02  fov= 55.0  view-heading=    0.0  carOff=  0.0
+live on                    v=  0 km/h  dist= 5.97  camH= 2.02  fov= 55.0  view-heading=   -0.0  carOff=  0.0
+live: dist fov gL gLat impact kmh lag look slip
+30 fps                     v= 11 km/h  dist= 6.11  camH= 2.02  fov= 55.9  view-heading=   -5.6  carOff= -1.3
+240 fps                    v= 11 km/h  dist= 5.99  camH= 2.03  fov= 55.4  view-heading=   -5.9  carOff= -1.4
+collision helper calls: yes
+OK

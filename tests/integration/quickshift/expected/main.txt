@@ -1,0 +1,16 @@
+coast, lifted at 30 m/s in 6th (shifts after lift-off)
+  stock      : none
+  quickShift : 6>5@0.63s 5>4@6.78s
+  log lines  : 2 coast downshift entries
+brake from creeping in D -> gear R:  stock 0.53s  quickShift 0.08s
+throttle while rolling back 2 m/s in R -> gear D:  stock 1.18s  quickShift 0.12s
+state with mod: attached=true hooked=true neutralDelay=0.10
+disabled: neutralDelay=0.50 gate=0.05 hookedFn=true
+after the controller rebuilt its tables: attached=true
+AI driving: neutralDelay=0.50 hooked-avgMode=0
+two copies: first hooked=true second hooked=false
+owner unloaded: other attached=true hooked=true, stock fn restored first=true
+upshift block: seen by the logic=true, restored afterwards=true
+stale module: hooked the live one=true
+gear blip: ignored=1 reported downshifts=0
+OK

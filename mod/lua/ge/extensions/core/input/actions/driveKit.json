@@ -1,0 +1,42 @@
+{
+  "agaSteeringRally": {
+    "cat": "vehicle",
+    "ctx": "vlua",
+    "desc": "Switches between Grip (steering stops at the grip limit) and Rally (push the stick all the way to steer past the grip limit, up to full lock when slow). Saved to settings.",
+    "onDown": "local a = extensions.agaSteering if a then a.toggleRally() end",
+    "order": 21.55,
+    "title": "AGA Steering: Grip / Rally"
+  },
+  "agaSteeringRecalibrate": {
+    "cat": "vehicle",
+    "ctx": "vlua",
+    "desc": "Re-measures the steering lock next time the car is stopped with the stick centred",
+    "onDown": "local a = extensions.agaSteering if a then a.recalibrate() end",
+    "order": 21.6,
+    "title": "AGA Steering: recalibrate"
+  },
+  "agaSteeringToggle": {
+    "cat": "vehicle",
+    "ctx": "vlua",
+    "desc": "Turns the AGA gamepad steering assist off, or back on in the last mode. Saved to settings.",
+    "onDown": "local a = extensions.agaSteering if a then a.toggle() end",
+    "order": 21.5,
+    "title": "AGA Steering: assist on / off"
+  },
+  "quickShiftToggle": {
+    "cat": "vehicle",
+    "ctx": "vlua",
+    "desc": "Turns QuickShift (quick coast downshifts and D / R changes) off, or back on",
+    "onDown": "local a = rawget(extensions, 'quickShift') or rawget(extensions, 'auto_quickShift') if a then a.toggle() end",
+    "order": 21.7,
+    "title": "QuickShift: on / off"
+  },
+  "horizonCamera": {
+    "cat": "camera",
+    "ctx": "tlua",
+    "desc": "Switches to the Horizon chase camera",
+    "onDown": "pcall(function() core_camera.setByName(0, 'horizon') end)",
+    "order": 3.5,
+    "title": "DriveKit: Horizon camera"
+  }
+}

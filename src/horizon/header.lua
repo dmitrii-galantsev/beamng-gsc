@@ -1,0 +1,16 @@
+-- Horizon Chase: a dynamic third-person chase camera for BeamNG.drive.
+--
+-- What makes it move:
+--   * yaw follows the car on a spring (loose when slow, tight when fast) and aims ahead into the turn
+--   * in a slide it swings part of the way toward the direction of travel, so the car shows its angle
+--   * speed widens the FOV and pulls the camera back; throttle pushes it back further, braking pulls it in
+--   * height rides a spring, so bumps and jumps move the car in the frame instead of the whole picture
+--   * follows slopes, rolls a little with the body, shakes at high speed and on impacts
+--   * right stick orbits the camera (rate control, stays where you leave it, eases back after a pause while driving)
+--
+-- Settings: settings.getValue('hzc_*'), edited in the CAM tab of the DriveKit UI app.
+--
+-- Part of DriveKit (AGA steering + Horizon camera + QuickShift).
+-- GENERATED FILE - do not edit. Source: TypeScript in src/horizon + src/core of the DriveKit repo, compiled with
+-- TypeScriptToLua (npm run build). Layout: a tiny module loader, then one section per source module
+-- (core.* = shared DriveKit code, horizon.rig = the pure camera model, horizon.horizon = BeamNG glue).

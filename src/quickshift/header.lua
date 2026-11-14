@@ -1,0 +1,23 @@
+-- QuickShift for BeamNG.drive
+--
+-- Fixes two things the stock automatic shift logic does slowly with a gamepad:
+--   * COASTING: lifting off the throttle lets the shift logic's "driving aggression" decay, so the downshift RPM
+--     falls back to the lazy end of the range, and every gear change waits out gearChangeDelay (0.5 s by default).
+--     QuickShift holds the aggression while you coast or brake, shortens that delay and lets the downshift
+--     through even if the throttle just moved, so the car is already in the right gear when you get back on it.
+--   * REVERSE: the arcade logic only goes D -> N -> R after the car is almost perfectly still and waits 0.5 s after
+--     every change; it only goes R -> D once the car has nearly stopped rolling backwards. QuickShift shortens
+--     the wait and lets the change happen while the car is still creeping (reverse -> drive up to 3 m/s).
+--
+-- It does not replace the gearbox logic. It adjusts the values the stock logic already reads (timers, the smoothed
+-- driving aggression, the throttle-change gate) and, for one frame at a time, the smoothed wheel speed it uses to
+-- decide "stopped". Gear selection, shift times and clutch handling stay stock.
+--
+-- Config: <userfolder>/settings/quickShift.json (re-read on every vehicle reset / spawn). Live: extensions.quickShift.*
+--   setEnabled(bool), toggle(), set("coastAggression", 0.8), reloadConfig(), getState()
+-- Published electrics: qsEnabled, qsAttached, qsCoast (0/1), qsReverse (0 none, 1 toward R, 2 toward D)
+--
+-- Part of DriveKit (AGA steering + Horizon camera + QuickShift).
+-- GENERATED FILE - do not edit. Source: TypeScript in src/quickshift + src/core of the DriveKit repo, compiled with
+-- TypeScriptToLua (npm run build). Layout: a tiny module loader, then one section per source module
+-- (core.* = shared DriveKit code, quickshift.model = the pure decision logic, quickshift.quickShift = BeamNG glue).

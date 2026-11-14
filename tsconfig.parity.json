@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.aga.json",
+  "compilerOptions": { "rootDir": ".", "outDir": "build/parity-lua" },
+  "include": ["tests/parity/main.ts", "src/types/common.d.ts", "src/types/electrics.d.ts", "src/types/vehicle.d.ts"],
+  "tstl": {
+    "luaTarget": "JIT",
+    "luaBundle": "../parity/vectors.lua",
+    "luaBundleEntry": "tests/parity/main.ts",
+    "luaLibImport": "require-minimal",
+    "noImplicitSelf": true,
+    "noHeader": true,
+    "sourceMapTraceback": false
+  }
+}

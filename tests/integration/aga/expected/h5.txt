@@ -1,0 +1,33 @@
+A  full lock @25             af=  7.58 ay=1.00g lock=33.0
+A  slide, stick released     peak bodyslip=12.4 int r^2=0.093 final r=-0.000
+A2 full lock (XYZ api path)  af=  7.58 ay=1.00g
+B  INVERTED sign: full lock  af= -7.58 ay=-1.00g r=-0.391 (stick +1 => left turn expected, |af|~7.6, r<0) sign=-1
+B  INVERTED sign: slide rel. peak bodyslip=12.4 int r^2=0.093 final r=-0.000 (normal convention gives 13.6 / 0.130)
+B2 calibrate=false, inverted=false: detected sign=1  slide rel. peak bodyslip=12.3 int r^2=0.132
+B2 calibrate=false, inverted=true : detected sign=-1  slide rel. peak bodyslip=12.3 int r^2=0.132
+C  reverse -8 m/s [default] stick .15: out=0.177 r=-0.237 (r<0: reversing with right lock yaws left) | hands-off yaw kick: peak bodyslip=0.39 int r^2=0.0013 final r=0.0000
+C  reverse -8 m/s [aga    ] stick .15: out=0.202 r=-0.276 (r<0: reversing with right lock yaws left) | hands-off yaw kick: peak bodyslip=0.54 int r^2=0.0015 final r=0.0000
+D  broken FL, full lock @25  af=  7.55 ay=0.50g out=0.265
+D  both fronts broken        out=1.000 (passthrough expected = 1.000)
+E  1 s airborne mid-corner   max per-frame output jump=0.011, after landing af=4.37 ay=0.89g targetSlip=8.00
+F  5 stick aborts then idle  lock=33.00 (true 33) curve={0.000,0.071,0.157,0.299,0.451,0.664,1.000}
+G  calib @240 fps rack 0.50/s lock=33.00 worst curve err=0.000  (AGA Steering: calibrated (lock 33.0 deg))
+G  calib @ 30 fps rack 0.50/s lock=33.00 worst curve err=0.000  (AGA Steering: calibrated (lock 33.0 deg))
+G  calib @240 fps rack 3.00/s lock=33.00 worst curve err=0.000  (AGA Steering: calibrated (lock 33.0 deg))
+G  calib @ 60 fps rack 0.25/s lock=33.00 worst curve err=0.000  (AGA Steering: calibrated (lock 33.0 deg))
+H  no F/R wheel names        af=  7.58 ay=1.00g lock=33.0 (assist should work: af~7.6)
+I  rear-steer vehicle        out=0.500 (passthrough expected 0.500)  (AGA Steering: rear-wheel steering detected - assist disabled for this vehicle)
+J  ackermann 15% + 1.5deg toe offset: lock=33.00 (true mean 33.0) curve={0.000,0.071,0.157,0.299,0.451,0.664,1.000}
+K  rack 1.6/s: full lock af=7.58 (max 8.04) ay=0.99g | slide released: peak bodyslip=12.4 int r^2=0.093 final r=-0.000
+K  rack 0.8/s: full lock af=7.58 (max 8.00) ay=0.99g | slide released: peak bodyslip=12.7 int r^2=0.140 final r=-0.000
+L  node velocity noise +-0.15 m/s: mean |d out| per frame=0.0013
+M  wheel(direct)=0.77 kbd=0.66 unseated=0.55 paused(dt=0)=0.44 (all untouched: .77 .66 .55 .44) lock kept after reset=true
+N  oversteery car, yaw kick, stick released [assist OFF                    ] peak bodyslip= 82.2 final r=2.245 SPIN
+N  oversteery car, yaw kick, stick released [assist ON                     ] peak bodyslip=  8.9 final r=0.000 caught
+N  oversteery car, yaw kick, stick released [ON, inverted sign conv.       ] peak bodyslip=  8.9 final r=0.000 caught
+N  oversteery car, yaw kick, stick released [ON, inverted, calibrate=false ] peak bodyslip=  9.0 final r=0.000 caught
+O  spawn with kbd filter: calibrated=true, kbd steering untouched=true | spawn with wheel (direct): calibrated=false, steering ever overridden=false
+P  throttle held at standstill: sweep started=false (expected false)
+Q   30 fps: full lock af=7.59 ay=1.00g | oversteery slide released peak bodyslip=8.9 final r=0.000
+Q  144 fps: full lock af=7.58 ay=1.00g | oversteery slide released peak bodyslip=8.9 final r=0.000
+Q   60 fps velocitySmoothing=0.03 (+noise): full lock af=7.57 ay=1.00g | oversteery slide released peak bodyslip=8.9 final r=0.000

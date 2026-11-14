@@ -1,0 +1,129 @@
+/* DriveKit app. Bottom-anchored: the strip sits at the bottom of the app box, the panel grows upward.
+   Accents: steer = green (grip) / orange (rally), cam = blue, shift = amber. */
+.dk-app { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; color: #eceef2; font-size: 12px; pointer-events: none;
+  --grip: #5dcaa5; --rally: #ff6a1a; --cam: #5aa9ff; --shift: #ffb347; --line: #4a4f59; --mute: #6f7782; --bg: rgba(14, 16, 20, 0.92); }
+/* BeamNG's .bngApp paints a dark box over the whole app area: keep the app see-through */
+.dk-app.bngApp { background: transparent !important; padding: 0 !important; box-shadow: none !important; }
+.dk-app > * { pointer-events: auto; }
+
+/* ---------- strip ---------- */
+.dk-strip { position: relative; height: 26px; flex: 0 0 auto; }
+/* idle: the steering gauge is all there is. hover (or panel open): it grows to the full strip and the controls fade in */
+.dk-strip .dk-gauge { position: absolute; left: 0; right: 0; bottom: 0; height: 7px; border-radius: 4px; box-shadow: none; background: rgba(14, 16, 20, 0.5); opacity: 0.75;
+  transition: height 0.15s, opacity 0.15s, border-radius 0.15s; }
+.dk-strip:hover .dk-gauge, .dk-app.open .dk-strip .dk-gauge { height: 26px; border-radius: 8px; opacity: 0.5; background: rgba(14, 16, 20, 0.7); }
+.dk-strip .dk-gauge::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, 0.25); }
+.dk-ctl { position: absolute; inset: 0; display: flex; align-items: center; gap: 5px; padding: 0 4px 0 5px; opacity: 0; pointer-events: none; transition: opacity 0.15s; }
+.dk-strip:hover .dk-ctl, .dk-app.open .dk-ctl { opacity: 1; pointer-events: auto; }
+.dk-ctl .dk-seg, .dk-ctl .dk-pill, .dk-ctl .dk-gear { background: rgba(14, 16, 20, 0.85); }
+.dk-ctl .dk-gear { margin-left: auto; }
+.dk-flash { position: absolute; bottom: 30px; left: 6px; max-width: 95%; overflow: hidden; text-overflow: ellipsis; font-size: 11px; color: #ffb38a; background: var(--bg); padding: 2px 8px; border-radius: 8px; white-space: nowrap; }
+
+.dk-pill { display: flex; align-items: center; gap: 4px; padding: 1px 7px; border: 1px solid var(--line); border-radius: 9px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px;
+  color: #cfd3da; cursor: pointer; white-space: nowrap; line-height: 14px; font-variant-numeric: tabular-nums; }
+.dk-pill:hover { color: #fff; border-color: #8a929c; }
+.dk-app.qs-fire .p-shift { border-color: var(--shift); }
+
+.dk-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #555b66; flex: 0 0 auto; }
+.dk-dot.on { background: var(--grip); box-shadow: 0 0 5px var(--grip); }
+.dk-app.m-rally .dk-dot.on { background: var(--rally); box-shadow: 0 0 5px var(--rally); }
+.dk-dot.wait { background: #c99a3a; }
+.dk-dot.bad { background: #c0504d; }
+.dk-dot.cam { background: var(--cam); box-shadow: 0 0 5px var(--cam); }
+.dk-dot.shift { background: var(--shift); box-shadow: 0 0 5px var(--shift); }
+
+/* segmented switches (modes, presets) */
+.dk-seg { display: flex; flex: 0 0 auto; border-radius: 9px; overflow: hidden; border: 1px solid var(--line); }
+.dk-seg.wide { margin: 6px 0; }
+.dk-seg.wide span { flex: 1; text-align: center; padding: 3px 0; }
+.dk-seg span { padding: 2px 7px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px; color: #9aa1ab; cursor: pointer; line-height: 14px; }
+.dk-seg span + span { border-left: 1px solid var(--line); }
+.dk-seg span:hover { color: #fff; }
+.dk-seg span.sel { background: var(--accent, var(--grip)); color: #10130f; }
+.dk-seg span.sel.r { background: var(--rally); color: #140a04; }
+.dk-app.m-off .dk-strip .dk-seg span.sel, .dk-app.m-off .tab-steer .dk-seg span.sel { background: #5a606a; color: #eceef2; }
+
+/* steering gauge: centre = straight, edges = full lock */
+.dk-gauge { flex: 1; height: 8px; background: rgba(255, 255, 255, 0.13); border-radius: 4px; position: relative; overflow: hidden; box-shadow: 0 0 2px rgba(0, 0, 0, 0.8); }
+.dk-gauge.big { height: 14px; border-radius: 5px; margin: 4px 0 3px; }
+.dk-zone { position: absolute; top: 0; height: 100%; }
+.dk-zone.grip { background: rgba(93, 202, 165, 0.75); }
+.dk-zone.reach { background: rgba(255, 106, 26, 0.6); display: none; }
+.dk-app.m-rally .dk-zone.reach { display: block; }
+.dk-mark { position: absolute; top: 0; width: 3px; margin-left: -1.5px; height: 100%; background: #fff; box-shadow: 0 0 3px #000; }
+.dk-app.m-off .dk-gauge { opacity: 0.25; }
+.dk-app.m-off .dk-zone, .dk-app.m-off .dk-mark { display: none; }
+
+.dk-gear { background: transparent; border: none; color: #cfd3da; font-size: 14px; width: 20px; height: 20px; line-height: 18px; padding: 0; cursor: pointer; border-radius: 50%; flex: 0 0 auto; }
+.dk-gear:hover { color: var(--rally); }
+
+/* ---------- panel ---------- */
+.dk-panel { margin-bottom: 6px; padding: 8px 11px 9px; border-radius: 8px; background: var(--bg); overflow-y: auto; flex: 0 1 auto; min-height: 0; }
+.dk-tabs { display: flex; gap: 4px; margin-bottom: 6px; }
+.dk-tabs span { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 3px 0; border-bottom: 2px solid transparent;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.8px; color: #8a929c; cursor: pointer; }
+.dk-tabs span:hover { color: #fff; }
+.dk-tabs span.sel { color: #fff; }
+.dk-tabs .t-steer.sel { border-color: var(--grip); }
+.dk-app.m-rally .dk-tabs .t-steer.sel { border-color: var(--rally); }
+.dk-tabs .t-cam.sel { border-color: var(--cam); }
+.dk-tabs .t-shift.sel { border-color: var(--shift); }
+.dk-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.dk-status { font-weight: 600; }
+.dk-status.bad { color: #e07b78; }
+.dk-facts { color: #8a929c; font-size: 11px; white-space: nowrap; }
+.dk-facts b { color: #cfd3da; font-weight: 500; }
+.dk-link { color: var(--cam); cursor: pointer; }
+.dk-link:hover { text-decoration: underline; }
+
+.dk-live { display: flex; justify-content: space-between; font-size: 10.5px; color: #8a929c; margin: 2px 0 4px; font-variant-numeric: tabular-nums; }
+.dk-live b { color: #eceef2; font-weight: 600; }
+.dk-live .hot, .dk-live .hot b { color: #ff8a4a; }
+.dk-live .k { display: inline-block; width: 7px; height: 7px; border-radius: 2px; margin-right: 3px; }
+.dk-live .k.grip { background: var(--grip); }
+.dk-live .k.reach { background: var(--rally); }
+
+.dk-row { display: flex; flex-direction: column; padding: 2px 0; }
+.dk-row span { display: flex; justify-content: space-between; }
+.dk-row b { color: var(--val, #ffb38a); font-weight: 500; }
+.dk-row input[type=range] { width: 100%; margin: 2px 0 0; }
+.dk-row em { display: flex; justify-content: space-between; font-style: normal; font-size: 9.5px; color: var(--mute); margin-top: -1px; }
+.dk-row em i { font-style: normal; }
+.dk-row.dim { opacity: 0.45; }
+.dk-row.accent { border-left: 2px solid var(--rally); padding-left: 8px; }
+.dk-check { display: flex; align-items: center; gap: 6px; padding: 3px 0; cursor: pointer; }
+.dk-more { margin-top: 6px; color: #aab0ba; cursor: pointer; }
+.dk-more:hover { color: #fff; }
+.dk-adv { border-left: 2px solid var(--line); padding-left: 8px; margin: 4px 0; }
+
+.dk-chips { display: flex; gap: 6px; margin: 2px 0; }
+.dk-chip { flex: 1; text-align: center; padding: 3px 0; border: 1px solid var(--line); border-radius: 9px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px; color: #7d8590; cursor: pointer; }
+.dk-chip.on { color: #ffd9a0; border-color: var(--shift); }
+.dk-chip.fire { background: var(--shift); color: #241500; }
+
+/* per-tab colours for presets and slider values */
+.tab-cam { --accent: var(--cam); --val: #a9d0ff; }
+.tab-shift { --accent: var(--shift); --val: #ffd9a0; }
+.tab-cam .dk-seg span.sel { color: #08121f; }
+.tab-shift .dk-seg span.sel { color: #241500; }
+.dk-buttons { display: flex; gap: 6px; margin-top: 8px; }
+.dk-buttons button { flex: 1; background: #2b2e37; color: #eee; border: 1px solid #4a4d57; border-radius: 4px; padding: 4px; cursor: pointer; font-size: 12px; }
+.dk-buttons button:hover { border-color: var(--rally); }
+
+/* ---------- shared log ---------- */
+.dk-logtoggle { margin-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 6px; }
+.dk-loghead { display: flex; justify-content: space-between; margin-top: 2px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7d8590; }
+.dk-loghead a { cursor: pointer; font-weight: 400; letter-spacing: 0; text-transform: none; }
+.dk-loghead a:hover { color: #fff; }
+.dk-log { font-family: Consolas, Menlo, monospace; font-size: 10.5px; line-height: 1.45; color: #c3c8d0; height: 84px; overflow-y: auto; margin-top: 3px; }
+.dk-log i { font-style: normal; color: var(--mute); margin-right: 5px; }
+.dk-log u { text-decoration: none; display: inline-block; width: 38px; font-size: 9.5px; font-weight: 700; text-transform: uppercase; }
+.dk-log .g-steer u { color: var(--grip); }
+.dk-log .g-cam u { color: var(--cam); }
+.dk-log .g-shift u { color: var(--shift); }
+.dk-log .set { color: #ffb38a; }
+.dk-log .hot { color: #ff8a4a; }
+.dk-log .save { color: var(--grip); }
+.dk-log .down { color: #a9d0ff; }
+.dk-log .help { color: #ffd9a0; }
+.dk-log .empty { color: var(--mute); }

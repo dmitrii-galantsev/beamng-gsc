@@ -1,0 +1,28 @@
+-- AGA Steering for BeamNG.drive
+-- Port of the steering core of "Advanced Gamepad Assist" for Assetto Corsa
+-- Original: https://github.com/adam10603/AC-Advanced-Gamepad-Assist  (MIT License, Copyright (c) 2023 Adam D.)
+-- BeamNG port: same MIT terms.
+--
+-- What it does (gamepad only by default):
+--   * smooths raw stick input with a speed-aware rate
+--   * limits the commanded front wheel angle so the front tyres sit near their peak slip angle
+--     (no more plowing understeer from full-lock stick inputs)
+--   * adds a "self-steer" force that follows the rear axle's direction of travel + yaw damping,
+--     which emulates a force-feedback wheel catching slides for you when you let go of the stick
+--   * relaxes the limit when you countersteer so you can still catch and hold drifts
+--
+-- It runs after BeamNG's own input filtering and overwrites the final steering value,
+-- so BeamNG's built-in gamepad assists are bypassed while this is active.
+--
+-- Conventions used internally: every lateral quantity is "positive = to the RIGHT of the car"
+-- (AC's local frame is x = left, so lateral angles are sign-flipped relative to the original source).
+-- The sign of BeamNG's steering_input is NOT assumed: it is measured (calibration sweep, or passively
+-- while driving) and the assist stays in plain pass-through until it is known.
+--
+-- Config: <userfolder>/settings/agaSteering.json  (re-read on every vehicle reset / spawn)
+--
+-- Part of DriveKit (AGA steering + Horizon camera + QuickShift).
+-- GENERATED FILE - do not edit. Source: TypeScript in src/aga + src/core of the DriveKit repo, compiled with
+-- TypeScriptToLua (npm run build). Layout: a tiny module loader, then one section per source module
+-- (lualib_bundle = TypeScriptToLua runtime helpers, core.* = shared DriveKit code, aga.* = this module).
+-- Modes: OFF / GRIP / RALLY (extensions.agaSteering.setMode, View button = toggleRally).
