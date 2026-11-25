@@ -14,4 +14,4 @@ jobs:
       - run: npm test
       - run: npm run package
       - uses: actions/upload-artifact@v4
-        with: { name: driveKit, path: dist/driveKit.zip }
+        with: { name: gsc, path: dist/gsc.zip }
